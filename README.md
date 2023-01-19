@@ -16,14 +16,15 @@ python predict.py --data_name test --config_path config/default.yaml --seed 0 --
 ```
 It saves the results under `result/seed0/`. You can use `pred.csv` as a prediction. You can see the parameters of `--topk` (100 by default) highest scores for each data in `score.csv`.
 
-With this prediction, you can score around 0.825 in the private leaderboard. By averaging the results of 2-3 seeds, the score is enough to win 2nd place. By averaging more seeds (~5) and ensembling different configuration (setting `freq_width` 4 and 6), you can score around 0.835.
-
 By specifying `--data_name train`, you can run validation on train data.
 ```
 python predict.py --data_name test --config_path config/default.yaml --seed 0 --out_dir result/seed0
 ```
 
 It took around 20 seconds to predict single data on NVIDIA V100 (=around 3 GPU hours and 2 GPU days for the execution of all train data and test data, respectively).
+
+## For higher scores
+The prediction by the above command scores around 0.825 in the private leaderboard. Averaging the results of 2 seeds raises the score to around 0.828, which is enough to win 2nd place. You can increase the score to 0.832 by averaging more seeds (~5) and even to 0.836 by ensembling different configurations (`config/freq4.yaml` and `config/freq6.yaml`).
 
 ## Links
 - For an overview of our key ideas and detailed explanation, please also refer to [2nd Place Solution: GPU-Accelerated Random Search](https://www.kaggle.com/competitions/g2net-detecting-continuous-gravitational-waves/discussion/376504) in Kaggle discussion.
