@@ -1,0 +1,4 @@
+n_trial: 3276800
+n_batch: 8192
+freq_width: 4
+positive_threshold: 1.537
