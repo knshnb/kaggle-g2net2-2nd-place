@@ -196,7 +196,11 @@ def predict(args: argparse.Namespace):
         df_score = pd.DataFrame({key: val[top_idx] for key, val in result.items()})
         if args.verbose:
             print(df_score)
-        preds.append(df_score.score.max())
+        pred = df_score.score.max()
+        # Generated data with high scores are considered to be positive.
+        if not row.is_real and pred > cfg.positive_threshold:
+            pred += 1.0
+        preds.append(pred)
         df_score["id"] = row.id
         df_score_list.append(df_score)
     out_dir = Path(args.out_dir)
